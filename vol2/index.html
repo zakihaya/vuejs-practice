@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="example">
+      <p>{{ name }}は{{ price * 1.08 }}円</p>
+      <input v-model="price">
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.2/vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: '#example',
+        data: {
+          name: 'みかん',
+          price: 100
+        }
+      });
+    </script>
+  </body>
+</html>
