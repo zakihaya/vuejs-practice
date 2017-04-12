@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="example">
+      <ul>
+        <li v-for="item in items" v-bind:key="item.name">
+          <p>{{ item.name }}は{{ item.price }}円</p>
+        </li>
+      </ul>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.2/vue.js"></script>
+    <script>
+      var vm = new Vue({
+        el: '#example',
+        data: {
+          items: [
+            {
+              name: 'みかん',
+              price: 100
+            },
+            {
+              name: 'もも',
+              price: 300
+            },
+            {
+              name: 'いちじく',
+              price: 500
+            },
+            {
+              name: 'メロン',
+              price: 1000
+            }
+          ]
+        }
+      });
+    </script>
+  </body>
+</html>
