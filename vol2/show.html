@@ -1,12 +1,17 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
   </head>
   <body>
     <div id="example">
       <p>名前：{{ name }}</p>
       <input v-model="name">
-      <p v-show="!isValid">名前を入力してください。</p>
+      <p v-show="!isValid" v-bind:class="messageClass" v-bind:style="messageStyle">名前を入力してください。</p>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.2/vue.js"></script>
     <script>
@@ -18,6 +23,12 @@
         computed: {
           isValid: function(){
             return this.name.length > 0;
+          },
+          messageClass: function(){
+            return { 'error': !this.isValid };
+          },
+          messageStyle: function(){
+            return { 'border': (this.isValid ? '' : '1px solid #f00') }
           }
         }
       });
