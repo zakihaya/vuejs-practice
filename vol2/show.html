@@ -10,7 +10,12 @@
   <body>
     <div id="example">
       <p>名前：{{ name }}</p>
-      <input v-model="name">
+      <p>名前(v-on:input)：{{ name2 }}</p>
+      <p>名前(v-on:change)：{{ name3 }}</p>
+      <input type="text" v-model="name" v-on:input="inputText" v-on:change="changeText">
+      <div v-show="isValid">
+        <button v-on:click="sendData">送信</button>
+      </div>
       <p v-show="!isValid" v-bind:class="messageClass" v-bind:style="messageStyle">名前を入力してください。</p>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.2/vue.js"></script>
@@ -18,7 +23,9 @@
       var vm = new Vue({
         el: '#example',
         data: {
-          name: ''
+          name: '',
+          name2: '',
+          name3: ''
         },
         computed: {
           isValid: function(){
@@ -29,6 +36,17 @@
           },
           messageStyle: function(){
             return { 'border': (this.isValid ? '' : '1px solid #f00') }
+          }
+        },
+        methods: {
+          inputText: function(event){
+            this.name2 = event.target.value;
+          },
+          changeText: function(event){
+            this.name3 = event.target.value;
+          },
+          sendData: function(event){
+            alert(this.name);
           }
         }
       });
