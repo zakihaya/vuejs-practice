@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="fruits-list">
+      <fruits-list-parent></fruits-list-parent>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.2/vue.js"></script>
+    <script>
+      var fruitsListChild = Vue.extend({
+        template: '<h1>フルーツ一覧</h1>'
+      });
+
+      var fruitsListParent = Vue.extend({
+        template: '<div>親コンポーネント<fruits-list-child></fruits-list-child></div>',
+        components: {
+          'fruits-list-child': fruitsListChild
+        }
+      });
+
+      var vm = new Vue({
+        el: '#fruits-list',
+        components: {
+          'fruits-list-parent': fruitsListParent
+        }
+      });
+    </script>
+  </body>
+</html>

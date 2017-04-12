@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>vue</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="fruits-component">
+      <child :message="mes"></child>
+      <ol>
+        <fruits-list-item v-for="fruit in fruitItems" :fruit="fruit"></fruits-list>
+      </ol>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.2/vue.js"></script>
+    <script>
+      Vue.component('child', {
+        // プロパティを宣言します。
+        props: ['message'],
+        // 単なるデータのように、プロパティは内部テンプレートで使用することができ、
+        // そして this.messageとして、vm の中で利用可能になります。
+        template: '<span>{{ message }}</span>'
+      })
+
+      Vue.component('fruits-list-item', {
+        props: ['fruit'],
+        template: '<li>{{fruit.name}}</li>'
+      });
+
+      new Vue({
+        el: '#fruits-component',
+        data: {
+          fruitItems: [
+            {name: '梨'},
+            {name: 'イチゴ'}
+          ],
+          mes: 'hello!!!!'
+        }
+      });
+    </script>
+  </body>
+</html>
