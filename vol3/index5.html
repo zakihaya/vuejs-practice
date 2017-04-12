@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>vue</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="container">
+      <page-header>
+        <h1 slot="header">冬の果物</h1>
+      </page-header>
+      <ul>
+        <li>りんご</li>
+        <li>イチゴ</li>
+      </ul>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.2/vue.js"></script>
+    <script>
+      var headerTemplate = `
+        <div style="background:white;">
+          <slot name="header"></slot>
+        </div>
+      `
+
+      var headerComponent = Vue.component('page-header', {
+        template: headerTemplate
+      });
+
+      var vm = new Vue({
+        el: '#container'
+      });
+    </script>
+  </body>
+</html>
