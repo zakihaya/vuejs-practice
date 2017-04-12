@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>vue</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="fruits-counter">
+      <p>{{total}}</p>
+      <div v-for="fruit in fruits">
+        {{fruit.name}}:
+        <counter-button v-on:inclement="incrementTotal()"></counter-button>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.2/vue.js"></script>
+    <script>
+      var counterButton = Vue.extend({
+        template: '<span>{{counter}}個<button v-on:click="addToCart">追加</button></span>',
+        data: function () {
+          return {
+            counter: 0
+          }
+        },
+        methods: {
+          addToCart: function () {
+            this.counter += 1;
+            this.$emit('inclement');
+          }
+        }
+      });
+
+      var vm = new Vue({
+        el: '#fruits-counter',
+        components: {
+          'counter-button': counterButton
+        },
+        data: {
+          total: 0,
+          fruits: [
+            {name: '梨'},
+            {name: 'イチゴ'}
+          ]
+        },
+        methods: {
+          incrementTotal: function(){
+            this.total += 1;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
