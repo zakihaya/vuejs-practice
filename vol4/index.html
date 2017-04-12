@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="app">
+      <router-link to="/top">トップページ</router-link>
+      <router-link to="/users">ユーザー一覧ページ</router-link>
+      <router-link :to="{ name: 'user', params: { userid: 123 }}">ユーザー詳細ページ</router-link>
+      <router-view></router-view>
+    </div>
+    <script src="https://cdn.jsdelivr.net/vue/2.0.3/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/vue.router/2.0.1/vue-router.min.js"></script>
+    <script>
+      // ルートオプションを渡してルーターインスタンスを生成します
+      var router = new VueRouter({
+        // 各ルートにコンポーネントをマッピングします
+        // コンポーネントはVue.extend()によって作られたコンポーネントコンストラクタでも
+        // コンポーネントオプションのオブジェクトでも構いません
+        routes: [
+          {
+            path: '/top',
+            name: 'top',
+            component: {
+              template: '<div>トップページです。</div>'
+            }
+          },
+          {
+            path: '/users',
+            name: 'users',
+            component: {
+              template: '<div>ユーザー一覧ページです。</div>'
+            }
+          },
+          {
+            path: '/users/:userid',
+            name: 'user',
+            component: {
+              template: '<div>ユーザーIDは {{$route.params.userid}} です。</div>'
+            }
+          }
+        ]
+      });
+
+      // ルーターのインスタンスをrootとなるVueインスタンスに渡します
+      var app = new Vue({
+        router: router
+      }).$mount('#app');
+    </script>
+  </body>
+</html>
