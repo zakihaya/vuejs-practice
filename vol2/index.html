@@ -4,7 +4,7 @@
   </head>
   <body>
     <div id="example">
-      <p>{{ name }}は{{ price * 1.08 }}円</p>
+      <p>{{ name }}は{{ priceWithTax }}円</p>
       <input v-model="price">
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.2/vue.js"></script>
@@ -14,6 +14,11 @@
         data: {
           name: 'みかん',
           price: 100
+        },
+        computed: {
+          priceWithTax: function() {
+            return this.price * 1.08;
+          }
         }
       });
     </script>
